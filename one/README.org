@@ -1,6 +1,7 @@
 #+TITLE: Day 1
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 * Part 1
+Find the Elf carrying the most Calories. How many total Calories is that Elf carrying?
 #+begin_src python
 with open("input.txt") as input:
     calories = 0
@@ -18,6 +19,7 @@ return(calories)
 : 69626
 
 * Part 2
+Find the top three Elves carrying the most Calories. How many Calories are those Elves carrying in total?
 #+begin_src python
 with open("input.txt") as input:
     calories = []
