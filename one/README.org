@@ -16,6 +16,7 @@ return(calories)
 
 #+RESULTS:
 : 69626
+
 * Part 2
 #+begin_src python
 with open("input.txt") as input:
