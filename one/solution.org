@@ -1,0 +1,36 @@
+#+TITLE: Day 1
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+* Part 1
+#+begin_src python
+with open("input.txt") as input:
+    calories = 0
+    current_calories = 0
+    for line in input:
+        if line == "\n":
+            calories = max(current_calories, calories)
+            current_calories = 0
+        else:
+            current_calories += int(line)
+return(calories)
+#+end_src
+
+#+RESULTS:
+: 69626
+* Part 2
+#+begin_src python
+with open("input.txt") as input:
+    calories = []
+    current_calories = 0
+    for line in input:
+        if line == "\n":
+            calories.append(current_calories)
+            current_calories = 0
+        else:
+            current_calories += int(line)
+    calories.sort(reverse=True)
+return(sum(calories[0:3]))
+
+#+end_src
+
+#+RESULTS:
+: 206780
