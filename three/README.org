@@ -1,0 +1,54 @@
+#+TITLE: Day 3
+* Part 1
++ Lower case = 1-26
++ Upper case = 27-52
+
+What is the sum of the priorities for items in common between first and second half of line.
+#+begin_src python :exports both
+def priority(char):
+    if char.isupper():
+        return ord(char) - 38
+    else:
+        return ord(char) - 96
+
+with open("input.txt") as input:
+    total_priority = 0
+    for line in input:
+        halflength = len(line)//2
+        first, last = line[:halflength], line[halflength:]
+        common = [i for i in first if i in last]
+        total_priority += priority(common[0])
+    return total_priority
+
+#+end_src
+
+#+RESULTS:
+: 7568
+* Part 2
++ A group is 3 lines
++ Lower case = 1-26
++ Upper case = 27-52
+
+What is the sum of the priorities for items in common between groups of 3 lines.
+#+begin_src python :exports both
+def priority(char):
+    if char.isupper():
+        return ord(char) - 38
+    else:
+        return ord(char) - 96
+
+with open("input.txt") as input:
+    total_priority = 0
+    group = []
+    for line in input:
+        group.append(line)
+        if len(group) == 3:
+            common = [i for i in group[0] if i in group[1] and i in group[2]]
+            total_priority += priority(common[0])
+            group = []
+    return total_priority
+
+#+end_src
+
+#+RESULTS:
+: 2780

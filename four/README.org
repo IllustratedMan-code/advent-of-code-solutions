@@ -1,0 +1,36 @@
+#+title: Day 4
+* Part 1
++ 2 elf pairs assigned to sections
+
+Which elves have sections that contain all their partners sections?
+#+begin_src python :exports both
+import csv
+with open("input.txt") as input:
+    count = 0
+    for row in csv.reader(input):
+        left, right = [[int(n) for n in i.split("-")] for i in row]
+        cond = lambda l, r : l[0] >= r[0] and l[1] <= r[1]
+        if cond(left, right) or cond(right, left):
+            count += 1
+    return count
+#+end_src
+
+#+RESULTS:
+: 560
+* Part 2
+Which elf pairs have *any* overlap?
+
+#+begin_src python :exports both
+import csv
+with open("input.txt") as input:
+    count = 0
+    for row in csv.reader(input):
+        left, right = [[int(n) for n in i.split("-")] for i in row]
+        cond = lambda l, r: l[0] in range(r[0],r[1]+1) or l[1] in range(r[0],r[1]+1)
+        if cond(left,right) or cond(right,left):
+            count += 1
+    return count
+#+end_src
+
+#+RESULTS:
+: 839

@@ -1,0 +1,32 @@
+
+* Part 1
+#+begin_src python :exports both
+
+def ismarker(s):
+    return len(set(s)) == len(s)
+
+with open("input.txt") as input:
+    line = input.readline()
+    for i in range(len(line)-4):
+        if ismarker(line[i:i+4]):
+            return(i+4)
+#+end_src
+
+#+RESULTS:
+: 1707
+* Part 2
+#+begin_src python :exports both
+marker_size = 14
+
+def ismarker(s):
+    return len(set(s)) == len(s)
+
+with open("input.txt") as input:
+    line = input.readline()
+    for i in range(len(line)-marker_size):
+        if ismarker(line[i:i+marker_size]):
+            return(i+marker_size)
+#+end_src
+
+#+RESULTS:
+: 1707

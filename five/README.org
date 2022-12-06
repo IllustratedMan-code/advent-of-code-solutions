@@ -1,0 +1,53 @@
+#+TITLE: Day five
+* Part 1
+#+begin_src python :exports both
+c = {1:["J","H","G","M","Z","N","T","F"],
+     2:["V","W","J"],
+     3:["G","V","L","J","B","T","H"],
+     4:["B","P","J","N","C","D","V","L"],
+     5:["F","W","S","M","P","R","G"],
+     6:["G","H","C","F","B","N","V","M"],
+     7:["D","H","G","M","R"],
+     8:["H","N","M","V","Z","D"],
+     9:["G","N","F","H"]}
+
+from itertools import islice
+
+with open("input.txt") as input:
+    for line in islice(input, 10, None):
+        l = line.split()
+        crates, from_crate, to_crate = int(l[1]),int(l[3]),int(l[5])
+        for i in range(crates):
+            c[to_crate].append(c[from_crate].pop())
+return c
+
+#+end_src
+
+#+RESULTS:
+| 1: | (T) | 2: | (C G N J H P D) | 3: | (M G V H G N H F G M W V J L N Z H M M R R S D L G V P B N C) | 4: | (N F H) | 5: | (M D Z J W F B V) | 6: | (B H) | 7: | (J) | 8: | (V F T) | 9: | (G) |
+* Part 2
+
+#+begin_src python :exports both
+c = {1:["J","H","G","M","Z","N","T","F"],
+     2:["V","W","J"],
+     3:["G","V","L","J","B","T","H"],
+     4:["B","P","J","N","C","D","V","L"],
+     5:["F","W","S","M","P","R","G"],
+     6:["G","H","C","F","B","N","V","M"],
+     7:["D","H","G","M","R"],
+     8:["H","N","M","V","Z","D"],
+     9:["G","N","F","H"]}
+
+from itertools import islice
+
+with open("input.txt") as input:
+    for line in islice(input, 10, None):
+        l = line.split()
+        crates, from_crate, to_crate = int(l[1]),int(l[3]),int(l[5])
+        c[to_crate] += c[from_crate][-(crates)::]
+        del c[from_crate][-(crates)::]
+return c
+#+end_src
+
+#+RESULTS:
+| 1: | (N) | 2: | (V R M G G G G) | 3: | (D D W M B G T F H V N N V F P V C B N Z R Z J L H J B W N C) | 4: | (H S M) | 5: | (H M T G J F H P) | 6: | (M J) | 7: | (L) | 8: | (D F H) | 9: | (V) |
